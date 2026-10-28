@@ -136,7 +136,7 @@
 
 ### OPPO Pad Mini（OPD2515 / ColorOS 16.1.0）
 
-以下来自 [Issue #9 的社区实测](https://github.com/rddmwmddr/android-ad-cleaner/issues/9)，尚无本机型整段自动脚本：
+以下来自 [Issue #9 的社区实测](https://github.com/jason6668/m-teacher-adcleaner/issues/9)，尚无本机型整段自动脚本：
 
 | 位置 | 差异与处理 |
 |---|---|
@@ -151,7 +151,7 @@
 
 ### 一加 Ace 5（PKG110 / ColorOS 16）
 
-来源：[PR #3 社区实测](https://github.com/rddmwmddr/android-ad-cleaner/pull/3)，不是本仓库整段回归结果。
+来源：[PR #3 社区实测](https://github.com/jason6668/m-teacher-adcleaner/pull/3)，不是本仓库整段回归结果。
 
 - 商店没有「隐私」「服务管理」；个性化推荐在「账号与隐私 → 隐私授权管理 → 个性化推荐」子页。
 - 浏览器底栏没有文字标签；社区通过公开入口 `com.heytap.browser/.settings.component.BrowserPreferencesPage` 进入。视频无启动入口时跳过，游戏中心从「我的 → 设置 → 隐私开关设置 → 个性化推荐管理」进入。
