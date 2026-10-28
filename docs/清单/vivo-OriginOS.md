@@ -78,7 +78,7 @@ iQOO 结构相近。当前源码有 `recipes/vivo-V2547DA/` 和 `recipes/vivo-V2
 vivo 推送分类的渠道：`VPushChannel_0`（运营消息）、`VPushChannel_4`（精彩消息）、`VPushChannel_6`（推荐消息）。
 
 - 🔴 支付宝运营、精彩；抖音运营、推荐；云服务推送；使用技巧智能推送建议；Play 特惠；Edge 热门资讯、突发新闻
-- ⚠️ OriginOS 7 社区实测（[PR #20](https://github.com/rddmwmddr/android-ad-cleaner/pull/20)）：`com.vivo.systemuiplugin` 应用总页的「允许通知」是应用级总开关，关闭会连订单、聊天通知一起关。源码在总页不点开关，做法见下文。
+- ⚠️ OriginOS 7 社区实测（[PR #20](https://github.com/jason6668/m-teacher-adcleaner/pull/20)）：`com.vivo.systemuiplugin` 应用总页的「允许通知」是应用级总开关，关闭会连订单、聊天通知一起关。源码在总页不点开关，做法见下文。
 - ⚠️ 渠道页由 `com.vivo.systemuiplugin` 处理，不要强行停止它。
 
 V2547A 上的实测数据（2026-10-25，改的就是页面顶部那个「允许通知」）：
@@ -97,7 +97,7 @@ V2547A 上的实测数据（2026-10-25，改的就是页面顶部那个「允许
 
 这台没有挂起任何包，App 内开关够用。
 
-- ⚠️ 快应用 `com.vivo.hybrid`：X300 Ultra（V2547A，Android 17）上系统拒绝挂起（[Issue #7](https://github.com/rddmwmddr/android-ad-cleaner/issues/7)）。根据 [PR #20](https://github.com/rddmwmddr/android-ad-cleaner/pull/20) 的真机证据，当前源码在能读到 `switch_quick_app_service` 时，通过系统服务开关关闭并验证，先备份原值；`quickapp on` 按本设备备份还原，找不到备份不会直接写成开启。这版实现在 V2547A 上已整段跑通：`quickapp off` 写入 `{"original": "1"}` 并把开关置 0，`quickapp on` 还原成 1 后自动删除记录文件。
+- ⚠️ 快应用 `com.vivo.hybrid`：X300 Ultra（V2547A，Android 17）上系统拒绝挂起（[Issue #7](https://github.com/jason6668/m-teacher-adcleaner/issues/7)）。根据 [PR #20](https://github.com/jason6668/m-teacher-adcleaner/pull/20) 的真机证据，当前源码在能读到 `switch_quick_app_service` 时，通过系统服务开关关闭并验证，先备份原值；`quickapp on` 按本设备备份还原，找不到备份不会直接写成开启。这版实现在 V2547A 上已整段跑通：`quickapp off` 写入 `{"original": "1"}` 并把开关置 0，`quickapp on` 还原成 1 后自动删除记录文件。
 - 🟢 智慧生活 `com.vivo.vhome` 属于智能家居功能，即使注册了 `hap://` 入口也不作为快应用广告组件处理。
 
 原始实测（V2547A，2026-10-25）：`pm suspend`、`pm disable-user`、`pm uninstall --user 0`
