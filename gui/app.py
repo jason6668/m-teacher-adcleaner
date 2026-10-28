@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""安卓去广告 · 桌面客户端（macOS / Windows）。
+"""马老师专属去广告 · 桌面客户端（macOS / Windows）。
 
 界面：gui/web/index.html（pywebview 窗口）
 后台：tool/run.py、tool/fast.py、tool/chan_fast.py，以子进程运行，日志实时回传界面。
@@ -8,7 +8,7 @@
 import json, os, platform, re, runpy, shutil, subprocess, sys, threading, time, urllib.error, urllib.request, uuid, zipfile
 from pathlib import Path
 
-APP_NAME = "安卓去广告"
+APP_NAME = "马老师专属去广告"
 VERSION = "0.2.6"
 FROZEN = getattr(sys, "frozen", False)
 BASE = getattr(sys, "_MEIPASS", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -21,11 +21,11 @@ from troubleshooting import UI_RECOVERY, is_ui_connection_error
 
 def data_dir():
     if IS_WIN:
-        d = os.path.join(os.environ.get("APPDATA", os.path.expanduser("~")), "AndroidAdCleaner")
+        d = os.path.join(os.environ.get("APPDATA", os.path.expanduser("~")), "MaLaoshiAdCleaner")
     elif platform.system() == "Darwin":
-        d = os.path.expanduser("~/Library/Application Support/AndroidAdCleaner")
+        d = os.path.expanduser("~/Library/Application Support/MaLaoshiAdCleaner")
     else:
-        d = os.path.expanduser("~/.local/share/android-ad-cleaner")
+        d = os.path.expanduser("~/.local/share/m-teacher-adcleaner")
     os.makedirs(d, exist_ok=True)
     return d
 
@@ -239,7 +239,7 @@ def win_clipboard(text):
 
 
 # 错误日志上报：用户预览并确认后发送；说明见 docs/12-错误日志上报.md
-REPORT_URL = "https://supabase.ahuamiao.com/functions/v1/aac-report"
+REPORT_URL = ""  # 改版：不设远程上报地址，见 send_report
 REPORT_LIMIT = 3            # 每小时最多上报几次（服务器另有按 IP / 安装编号 / 全站的配额）
 PRIVATE = (
     (re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}"), "<邮箱>"),
@@ -646,10 +646,12 @@ class Api:
             return {"error": f"一小时内最多上报 {REPORT_LIMIT} 次，请稍后再试"}
         if not isinstance(payload, dict):
             return {"error": "上报内容格式不对"}
+        if not REPORT_URL:
+            return {"error": "马老师专属去广告暂不提供远程上报，请把诊断内容复制到 GitHub 提交 Issue（仓库主页 → Issues → New issue）"}
         body = dict(payload, install_id=self._install_id())
         request = urllib.request.Request(
             REPORT_URL, data=json.dumps(body, ensure_ascii=False).encode("utf-8"), method="POST",
-            headers={"Content-Type": "application/json", "User-Agent": f"AndroidAdCleaner/{VERSION}"})
+            headers={"Content-Type": "application/json", "User-Agent": f"MaLaoshiAdCleaner/{VERSION}"})
         try:
             # 云函数闲置后第一次调用要加载依赖，给足时间
             with urllib.request.urlopen(request, timeout=45) as response:
