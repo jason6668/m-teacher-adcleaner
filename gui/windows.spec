@@ -1,5 +1,5 @@
 # Windows 打包：一次分析，两个 exe 共用 _internal
-#   AndroidAdCleaner.exe  窗口程序（用户双击）
+#   MaLaoshiAdCleaner.exe  窗口程序（用户双击）
 #   aac-cli.exe           命令行程序（客户端在后台调用，有正常的标准输出）
 # 用法（仓库根目录）：pyinstaller --noconfirm --distpath gui/dist --workpath gui/build gui/windows.spec
 import os, sys
@@ -17,6 +17,6 @@ for pkg in ("uiautomator2", "adbutils", "webview"):
 a = Analysis([os.path.join(ROOT, "gui", "app.py")], pathex=[ROOT], binaries=binaries, datas=datas, hiddenimports=hidden)
 pyz = PYZ(a.pure)
 icon = os.path.join(ROOT, "gui", "icon.ico")
-gui = EXE(pyz, a.scripts, [], exclude_binaries=True, name="AndroidAdCleaner", console=False, icon=icon)
+gui = EXE(pyz, a.scripts, [], exclude_binaries=True, name="MaLaoshiAdCleaner", console=False, icon=icon)
 cli = EXE(pyz, a.scripts, [], exclude_binaries=True, name="aac-cli", console=True, icon=icon)
-coll = COLLECT(gui, cli, a.binaries, a.datas, name="AndroidAdCleaner")
+coll = COLLECT(gui, cli, a.binaries, a.datas, name="MaLaoshiAdCleaner")
