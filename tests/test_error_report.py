@@ -62,21 +62,13 @@ class ReportTests(unittest.TestCase):
         self.assertTrue(all(len(s["title"]) <= 40 for s in payload["steps"]))
         self.assertLess(len(json.dumps(payload, ensure_ascii=False).encode()), 64 * 1024)
 
-    def test_send_posts_preview_plus_install_id(self):
+    def test_send_disabled_without_server(self):
         payload = self.api.report_payload()
-        sent = {}
-
-        def fake(request, timeout):
-            sent["body"] = json.loads(request.data.decode("utf-8"))
-            sent["url"] = request.full_url
-            return Response(json.dumps({"status": "ok", "id": "abc"}).encode())
-        with patch.object(self.app.urllib.request, "urlopen", side_effect=fake):
-            self.assertEqual(self.api.send_report(payload), {"ok": True, "id": "abc"})
-        install = sent["body"].pop("install_id")
-        self.assertEqual(sent["body"], payload)
-        self.assertEqual(sent["url"], self.app.REPORT_URL)
-        self.assertEqual(Path(self.dir.name, "install-id").read_text(), install)
-        self.assertEqual(self.api._install_id(), install)              # 同一台电脑沿用
+        with patch.object(self.app.urllib.request, "urlopen") as call:
+            result = self.api.send_report(payload)
+        self.assertIn("暂不提供远程上报", result["error"])
+        self.assertIn("GitHub", result["error"])
+        call.assert_not_called()
 
     def test_invalid_install_id_file_is_replaced(self):
         Path(self.dir.name, "install-id").write_text("serial-or-junk")
@@ -84,32 +76,12 @@ class ReportTests(unittest.TestCase):
         self.assertNotEqual(value, "serial-or-junk")
         self.assertRegex(value, r"^[0-9a-f-]{36}$")
 
-    def test_local_hourly_limit(self):
+    def test_disabled_send_does_not_consume_quota(self):
         payload = self.api.report_payload()
-        reply = lambda *a, **k: Response(json.dumps({"status": "ok", "id": "x"}).encode())
-        with patch.object(self.app.urllib.request, "urlopen", side_effect=reply) as call:
-            for _ in range(3):
-                self.assertTrue(self.api.send_report(payload)["ok"])
-            self.assertIn("最多上报", self.api.send_report(payload)["error"])
-        self.assertEqual(call.call_count, 3)
-
-    def test_server_rate_limit_and_errors_are_explained(self):
-        payload = self.api.report_payload()
-        limited = urllib.error.HTTPError(self.app.REPORT_URL, 429, "Too Many", {}, io.BytesIO(b'{"status":"limited"}'))
-        with patch.object(self.app.urllib.request, "urlopen", side_effect=limited):
-            self.assertIn("太频繁", self.api.send_report(payload)["error"])
-        bad = urllib.error.HTTPError(self.app.REPORT_URL, 400, "Bad", {}, io.BytesIO('{"message":"安装编号格式不对"}'.encode()))
-        with patch.object(self.app.urllib.request, "urlopen", side_effect=bad):
-            self.assertIn("安装编号格式不对", self.api.send_report(payload)["error"])
-        with patch.object(self.app.urllib.request, "urlopen", side_effect=urllib.error.URLError("timed out")):
-            self.assertIn("连不上", self.api.send_report(payload)["error"])
-        self.assertEqual(self.api.report_times, [])                    # 失败不占本地额度
-
-    def test_duplicate_is_not_an_error(self):
-        reply = lambda *a, **k: Response(b'{"status":"duplicate"}')
-        with patch.object(self.app.urllib.request, "urlopen", side_effect=reply):
-            self.assertEqual(self.api.send_report(self.api.report_payload()), {"ok": True, "duplicate": True})
-
+        for _ in range(4):
+            result = self.api.send_report(payload)
+            self.assertIn("暂不提供远程上报", result["error"])
+        self.assertEqual(self.api.report_times, [])
 
 SERVER = ROOT / ".private/aac-report"      # 服务端代码只在维护者本机，不进仓库
 
