@@ -150,5 +150,5 @@ python3 tool/run.py devices
 2. 没关掉的和原因（找不到入口、开关点不动、要同意协议才能进）。
 3. 挂起了哪些包、关了哪些快应用，怎么还原（`run.py -s S unsuspend`、`quickapp on`）。
 4. 插电常亮是否已还原。
-5. 有没关掉的项或报错：问用户要不要反馈。同意后整理型号、系统版本、出错的段和日志（序列号替换成 `<序列号>`），用 `gh issue create --repo rddmwmddr/android-ad-cleaner` 提交，或者给用户一个 `https://github.com/rddmwmddr/android-ad-cleaner/issues/new?template=bug_report.md&title=…&body=…` 链接。
+5. 有没关掉的项或报错：问用户要不要反馈。同意后整理型号、系统版本、出错的段和日志（序列号替换成 `<序列号>`），用 `gh issue create --repo jason6668/m-teacher-adcleaner` 提交，或者给用户一个 `https://github.com/jason6668/m-teacher-adcleaner/issues/new?template=bug_report.md&title=…&body=…` 链接。
 6. 提醒关闭开发者模式：手机上「设置 → 搜索开发者选项 → 关掉总开关」，或由你执行 `dev-off --yes`。说明关掉开发者模式不会撤销这次的改动。
