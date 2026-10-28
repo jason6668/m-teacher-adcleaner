@@ -3,11 +3,11 @@
 #   gui/build_mac.sh                      Apple 芯片版，不签名（自己测）
 #   ARCH=x86_64 gui/build_mac.sh          Intel 版（在 Apple 芯片的 Mac 上要装 Rosetta）
 #   SIGN_ID="Developer ID Application: 名字 (TEAMID)" NOTARY_PROFILE=钥匙串公证配置名 gui/build_mac.sh
-# 产物：gui/dist/<架构>/安卓去广告.app、gui/dist/AndroidAdCleaner-<版本>-mac-<arm64|intel>.dmg
+# 产物：gui/dist/<架构>/马老师专属去广告.app、gui/dist/MaLaoshiAdCleaner-<版本>-mac-<arm64|intel>.dmg
 set -eo pipefail
 cd "${0:A:h}/.."
 ARCH=${ARCH:-arm64}
-NAME="安卓去广告"
+NAME="马老师专属去广告"
 if [ "$ARCH" = "x86_64" ]; then
   VENV=gui/.venv-x86; RUN=(arch -x86_64); TAG=intel; PYVER=cpython-3.12-macos-x86_64
 else
@@ -29,7 +29,7 @@ DATA="$PWD/gui/build/$ARCH/data"
 $PY gui/bundle_data.py "$DATA"
 $RUN $PY -m PyInstaller --noconfirm --windowed --name "$NAME" \
   --distpath $OUT --workpath gui/build/$ARCH --specpath gui/build/$ARCH \
-  --osx-bundle-identifier com.rddmwmddr.androidadcleaner \
+  --osx-bundle-identifier com.malaoshi.adcleaner \
   --icon "$PWD/gui/icon.icns" \
   --add-data "$DATA/tool:tool" --add-data "$DATA/recipes:recipes" \
   --add-data "$DATA/images:images" --add-data "$DATA/gui/web:gui/web" \
@@ -62,7 +62,7 @@ if [ -n "$SIGN_ID" ]; then
   fi
 fi
 
-DMG="gui/dist/AndroidAdCleaner-$VER-mac-$TAG.dmg"
+DMG="gui/dist/MaLaoshiAdCleaner-$VER-mac-$TAG.dmg"
 rm -f "$DMG"
 STAGE="gui/build/$ARCH/dmg"; rm -rf "$STAGE"; mkdir -p "$STAGE"
 cp -R "$APP" "$STAGE/"; ln -s /Applications "$STAGE/应用程序"
