@@ -1,25 +1,25 @@
-# 手机去广告
+# 马老师专属去广告
+
+基于 [rddmwmddr/android-ad-cleaner](https://github.com/rddmwmddr/android-ad-cleaner)（MIT 开源）改版：品牌、图标与下载页已替换为马老师专属，原作者署名见 LICENSE。改版 Windows 安装版与免安装版见下方下载表，Mac 版请从源码自行构建（gui/build_mac.sh，未签名）。
 
 关掉国产安卓手机系统里的广告、热搜、资讯推荐和营销推送。
 
-介绍页：**https://rddmwmddr.github.io/android-ad-cleaner/**
+介绍页：**https://jason6668.github.io/m-teacher-adcleaner/**
 
 ## 下载桌面客户端
 
 插上手机，点几下按钮。不需要 Python，也不需要 AI 工具。
 
-> **v0.2.6 · 2026-10-28**：按 0.2.5 收到的 122 份错误日志修复：手机锁屏时等你解锁后继续，不再整步失败；系统锁定的灰色通知渠道不算失败；OPPO、一加、realme 锁屏能认出；手机断开后不再每一步重复报错；vivo OriginOS 3、华为渠道页、小米断网接口三处兼容。新增 9 个社区机型脚本（红米 K80 至尊版、K90 Pro Max、K70、Note 14 Pro、Note 12 Turbo，vivo X300 Ultra OriginOS 7、iQOO V2324HA、vivo V2361A，一加 Ace 2）。旧版不会自动更新，请重新下载，已有备份会保留。详见 [更新记录](CHANGELOG.md)，错误日志上报说明见 [这里](docs/12-错误日志上报.md)。官网：https://ahuamiao.com/sites/other/android-ad-removal-intro.html
+> **v0.2.6 · 2026-10-28**：按 0.2.5 收到的 122 份错误日志修复：手机锁屏时等你解锁后继续，不再整步失败；系统锁定的灰色通知渠道不算失败；OPPO、一加、realme 锁屏能认出；手机断开后不再每一步重复报错；vivo OriginOS 3、华为渠道页、小米断网接口三处兼容。新增 9 个社区机型脚本（红米 K80 至尊版、K90 Pro Max、K70、Note 14 Pro、Note 12 Turbo，vivo X300 Ultra OriginOS 7、iQOO V2324HA、vivo V2361A，一加 Ace 2）。旧版不会自动更新，请重新下载，已有备份会保留。详见 [更新记录](CHANGELOG.md)，错误日志上报说明见 [这里](docs/12-错误日志上报.md)。介绍页：https://jason6668.github.io/m-teacher-adcleaner/
 
 此前版本已处理 Windows 本地页面超时、荣耀截图越界、通知渠道误操作风险、vivo 快应用与备份问题。各 Issue 的处理范围和待验证项见 [社区问题处理记录](docs/09-社区问题处理.md)。仅支持通过 adb 连接的安卓设备，暂不支持使用 HDC 的原生鸿蒙。
 
 | 电脑 | 下载 | 说明 |
 |---|---|---|
-| Mac · Apple 芯片（M1 及以后） | [AndroidAdCleaner-0.2.6-mac-arm64.dmg](https://github.com/rddmwmddr/android-ad-cleaner/releases/download/v0.2.6/AndroidAdCleaner-0.2.6-mac-arm64.dmg) | 已签名、通过苹果公证，双击就能打开 |
-| Mac · Intel 芯片（macOS 11 及以上） | [AndroidAdCleaner-0.2.6-mac-intel.dmg](https://github.com/rddmwmddr/android-ad-cleaner/releases/download/v0.2.6/AndroidAdCleaner-0.2.6-mac-intel.dmg) | 同上 |
-| Windows 10 / 11 · 安装版 | [AndroidAdCleaner-0.2.6-windows-setup.exe](https://github.com/rddmwmddr/android-ad-cleaner/releases/download/v0.2.6/AndroidAdCleaner-0.2.6-windows-setup.exe) | 弹「Windows 已保护你的电脑」时点「更多信息」→「仍要运行」 |
-| Windows 10 / 11 · 免安装 | [AndroidAdCleaner-0.2.6-windows-portable.zip](https://github.com/rddmwmddr/android-ad-cleaner/releases/download/v0.2.6/AndroidAdCleaner-0.2.6-windows-portable.zip) | 解压后双击 `AndroidAdCleaner.exe` |
+| Windows 10 / 11 · 安装版 | [MaLaoshiAdCleaner-0.2.6-windows-setup.exe](https://github.com/jason6668/m-teacher-adcleaner/releases/download/v0.2.6/MaLaoshiAdCleaner-0.2.6-windows-setup.exe) | 弹「Windows 已保护你的电脑」时点「更多信息」→「仍要运行」 |
+| Windows 10 / 11 · 免安装 | [MaLaoshiAdCleaner-0.2.6-windows-portable.zip](https://github.com/jason6668/m-teacher-adcleaner/releases/download/v0.2.6/MaLaoshiAdCleaner-0.2.6-windows-portable.zip) | 解压后双击 `MaLaoshiAdCleaner.exe` |
 
-不知道 Mac 是哪种芯片：左上角苹果图标 → 关于本机，「芯片」写 Apple M 开头的选 Apple 芯片。所有版本：[Releases](https://github.com/rddmwmddr/android-ad-cleaner/releases)。用法：[docs/08-桌面客户端.md](docs/08-桌面客户端.md)。
+不知道 Mac 是哪种芯片：左上角苹果图标 → 关于本机，「芯片」写 Apple M 开头的选 Apple 芯片。所有版本：[Releases](https://github.com/jason6668/m-teacher-adcleaner/releases)。用法：[docs/08-桌面客户端.md](docs/08-桌面客户端.md)。
 
 | | |
 |---|---|
@@ -76,8 +76,8 @@
 用法一的开场白，复制给 AI：
 
 ```text
-请克隆 https://github.com/rddmwmddr/android-ad-cleaner ，读仓库里的 AGENTS.md，
-然后帮我给连着电脑的这台手机去广告。每一步改之前告诉我要改什么。
+请克隆 https://github.com/jason6668/m-teacher-adcleaner ，读仓库里的 AGENTS.md，
+然后帮我给连着电脑的这台马老师专属去广告。每一步改之前告诉我要改什么。
 ```
 
 ---
@@ -169,7 +169,7 @@ tests/               不连接手机的引擎回归测试
 
 ## 反馈
 
-遇到问题、想要新功能、希望支持你的手机，到 [Issues](https://github.com/rddmwmddr/android-ad-cleaner/issues/new/choose) 提交，选对应的模板。
+遇到问题、想要新功能、希望支持你的手机，到 [Issues](https://github.com/jason6668/m-teacher-adcleaner/issues/new/choose) 提交，选对应的模板。
 
 用桌面客户端的话，点左下角「反馈问题」：会自动附上客户端版本、手机型号、系统版本和最近的日志（序列号已替换，不含应用列表和通知内容），打开 GitHub 页面后点提交即可。提交需要 GitHub 账号。
 
