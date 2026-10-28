@@ -6,7 +6,7 @@
 | 机型 | 系统 | 来源 |
 |---|---|---|
 | Xiaomi 18 Pro Max（M154FF） | HyperOS OS4.0.24，Android 17 | 2026-10-22 实测；2026-10-25 九段脚本重跑通过 |
-| Xiaomi 18 Fold（2608BPX34C） | CP2A.260605.016，Android 17 | 2026-10-24 社区实测（[Issue #2](https://github.com/rddmwmddr/android-ad-cleaner/issues/2)） |
+| Xiaomi 18 Fold（2608BPX34C） | CP2A.260605.016，Android 17 | 2026-10-24 社区实测（[Issue #2](https://github.com/jason6668/m-teacher-adcleaner/issues/2)） |
 | REDMI K80 至尊版（25060RK16C） | HyperOS 2（BP2A.250605.031.A3），Android 16 | 2026-10-27 真机实测；专用脚本九段全通过并回读（recipes/redmi-25060RK16C） |
 | REDMI K90 Pro Max（25102RKBEC） | HyperOS OS4.0.2.0.XPMCNXM，Android 17 | 2026-10-27 实测，九段机型脚本全通过（169 秒） |
 
@@ -97,7 +97,7 @@ REDMI K80 至尊版（HyperOS 2 / Android 16）结构差异：「隐私与安全
 **路径**：天气 / 日历 → 设置 → 用户体验计划。天气可从右上「更多设置（三点） → 设置」进入；日历可从右上菜单「设置 → 用户体验计划」或直达 activity 进入。
 
 - 🔴 里面的推荐内容、个性化推荐、内容推广
-- 2026-10-25 已在 Xiaomi 18 Pro Max 上验证并关闭天气、日历的「内容推广」（天气 18.0.0.27-R、日历 18.0.1.30）。Redmi K60 的入口来源为[社区反馈](https://github.com/rddmwmddr/android-ad-cleaner/issues/1)。天气预警、异常天气提醒保留。
+- 2026-10-25 已在 Xiaomi 18 Pro Max 上验证并关闭天气、日历的「内容推广」（天气 18.0.0.27-R、日历 18.0.1.30）。Redmi K60 的入口来源为[社区反馈](https://github.com/jason6668/m-teacher-adcleaner/issues/1)。天气预警、异常天气提醒保留。
 
 ## 10. 营销通知
 
@@ -143,7 +143,7 @@ adb -s S shell cmd connectivity set-package-networking-enabled true com.miui.sys
 - 浏览器：底栏「我的」标签在部分启动状态下点不动，直达 `com.android.browser/.BrowserSettingsActivity`；隐私和安全里关个性化内容/广告推荐；主页设置宫格位推送、搜索设置猜你想搜、功能设置小说本版本仍在。
 - 天气、日历的「用户体验计划」本次未进入入口，待补。
 
-**小米 10（umi，Android 13 / OS1.0.7.0）**：[Issue #21](https://github.com/rddmwmddr/android-ad-cleaner/issues/21) 提供了旧版路径。浏览器顶部设置图标可能没有 `clickable` 标记；脚本只在工具栏识别，不点击资讯正文里的「我的」。热榜页面可能同时有「推荐」开关和热搜 / 娱乐 / 话题子页，子页还会横屏；0.2.1 已修正读屏尺寸和遍历，但整段仍待该机复测。天气「用户体验计划」里的「天气视频卡片」「内容推广」可关闭，天气预警保留；天气、日历首次启动的协议由机主决定，脚本不代为同意。
+**小米 10（umi，Android 13 / OS1.0.7.0）**：[Issue #21](https://github.com/jason6668/m-teacher-adcleaner/issues/21) 提供了旧版路径。浏览器顶部设置图标可能没有 `clickable` 标记；脚本只在工具栏识别，不点击资讯正文里的「我的」。热榜页面可能同时有「推荐」开关和热搜 / 娱乐 / 话题子页，子页还会横屏；0.2.1 已修正读屏尺寸和遍历，但整段仍待该机复测。天气「用户体验计划」里的「天气视频卡片」「内容推广」可关闭，天气预警保留；天气、日历首次启动的协议由机主决定，脚本不代为同意。
 
 | 现象 | 对策 |
 |---|---|
