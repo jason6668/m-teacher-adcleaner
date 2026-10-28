@@ -52,17 +52,12 @@ jobs:
             gui/dist/*.zip
             gui/dist/*-setup.exe
       - name: 上传到 Release
-        if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          $tag = "${{ github.ref_name }}"
+          $tag = "v${{ steps.ver.outputs.ver }}"
           $release = gh release view $tag --json isDraft,assets | ConvertFrom-Json
           if ($LASTEXITCODE -ne 0) { throw "请先创建对应的 Release 草稿" }
-          if (-not $release.isDraft) {
-            Write-Host "Release 已公开，保留已验证文件及 SHA256，不用重建产物覆盖。"
-            exit 0
-          }
           foreach ($file in Get-ChildItem gui/dist/*.zip, gui/dist/*-setup.exe) {
             if ($release.assets.name -contains $file.Name) {
               Write-Host "已存在，保留：$($file.Name)"
