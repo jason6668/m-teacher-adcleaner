@@ -22,7 +22,7 @@ class DeviceLock:
     def __init__(self, serial, wait=20):
         # 不用序列号做文件名；不删除锁文件，避免另一个进程锁住不同 inode。
         name = hashlib.sha256(serial.encode("utf-8")).hexdigest()
-        directory = Path(tempfile.gettempdir()) / "android-ad-cleaner-locks"
+        directory = Path(tempfile.gettempdir()) / "m-teacher-adcleaner-locks"
         directory.mkdir(exist_ok=True)
         self.file = open(directory / (name + ".lock"), "a+b")
         self.file.seek(0, 2)
