@@ -278,14 +278,14 @@ class ScrubTests(unittest.TestCase):
 
     def test_user_folder_moved_to_another_drive(self):
         # 一份报告的路径是 E:\360MoveData\Users\<真名>\Desktop\…，两层脱敏都没盖住
-        text = self.app.scrub(r'File "E:\360MoveData\Users\TestName\Desktop\AndroidAdCleaner\tool\chan_fast.py"')
+        text = self.app.scrub(r'File "E:\360MoveData\Users\TestName\Desktop\MaLaoshiAdCleaner\tool\chan_fast.py"')
         self.assertNotIn("TestName", text)
         self.assertIn(r"<用户目录>\Desktop", text)
         self.assertNotIn("TestName", self.app.scrub(r"C:\Users\TestName\AppData"))
         self.assertNotIn("TestName", self.app.scrub("/home/TestName/x"))
 
     def test_install_folder_and_huawei_version_are_kept(self):
-        self.assertEqual(self.app.scrub(r"D:\AndroidAdCleaner\_internal\tool\fast.py"), r"D:\AndroidAdCleaner\_internal\tool\fast.py")
+        self.assertEqual(self.app.scrub(r"D:\MaLaoshiAdCleaner\_internal\tool\fast.py"), r"D:\MaLaoshiAdCleaner\_internal\tool\fast.py")
         self.assertEqual(self.app.scrub("NOH-AN00 4.2.0.180(C00E180R)"), "NOH-AN00 4.2.0.180(C00E180R)")
         self.assertEqual(self.app.scrub("adb connect 192.168.1.5:5555"), "adb connect <IP>")
 
