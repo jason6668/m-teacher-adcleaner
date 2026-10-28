@@ -4,17 +4,17 @@
 #endif
 [Setup]
 AppId={{6C1E3F2A-8B7D-4E55-9A41-AAC0ADC1EA01}
-AppName=安卓去广告
+AppName=马老师专属去广告
 AppVersion={#APPVER}
-AppPublisher=android-ad-cleaner
-AppPublisherURL=https://github.com/rddmwmddr/android-ad-cleaner
-DefaultDirName={autopf}\AndroidAdCleaner
-DefaultGroupName=安卓去广告
+AppPublisher=马老师
+AppPublisherURL=https://github.com/jason6668/m-teacher-adcleaner
+DefaultDirName={autopf}\MaLaoshiAdCleaner
+DefaultGroupName=马老师专属去广告
 DisableProgramGroupPage=yes
 OutputDir=dist
-OutputBaseFilename=AndroidAdCleaner-{#APPVER}-windows-setup
+OutputBaseFilename=MaLaoshiAdCleaner-{#APPVER}-windows-setup
 SetupIconFile=icon.ico
-UninstallDisplayIcon={app}\AndroidAdCleaner.exe
+UninstallDisplayIcon={app}\MaLaoshiAdCleaner.exe
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
@@ -33,11 +33,11 @@ Name: "en"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "dist\AndroidAdCleaner\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "dist\MaLaoshiAdCleaner\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{group}\安卓去广告"; Filename: "{app}\AndroidAdCleaner.exe"
-Name: "{autodesktop}\安卓去广告"; Filename: "{app}\AndroidAdCleaner.exe"; Tasks: desktopicon
+Name: "{group}\马老师专属去广告"; Filename: "{app}\MaLaoshiAdCleaner.exe"
+Name: "{autodesktop}\马老师专属去广告"; Filename: "{app}\MaLaoshiAdCleaner.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\AndroidAdCleaner.exe"; Description: "{cm:LaunchProgram,安卓去广告}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\MaLaoshiAdCleaner.exe"; Description: "{cm:LaunchProgram,马老师专属去广告}"; Flags: nowait postinstall skipifsilent
